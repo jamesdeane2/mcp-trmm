@@ -21,7 +21,7 @@ load_dotenv()
 
 # Configure logging
 log_level = os.getenv("LOG_LEVEL", "INFO")
-log_file = os.getenv("LOG_FILE", "trmm_mcp.log")
+log_file = os.getenv("LOG_FILE", os.path.join(os.path.dirname(__file__), "trmm_mcp.log"))
 
 logging.basicConfig(
     level=getattr(logging, log_level),
