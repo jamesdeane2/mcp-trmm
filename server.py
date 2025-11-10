@@ -14,7 +14,7 @@ from mcp.server import Server
 from mcp.types import Tool, TextContent
 
 # Import all module handlers
-from src.modules import agents, scripts, windows_updates, software, tasks, custom_fields, audit_logs, clients
+from src.modules import agents, scripts, windows_updates, software, tasks, custom_fields, audit_logs, clients, local_scripts, script_library
 
 # Load environment variables
 load_dotenv()
@@ -46,7 +46,9 @@ ALL_MODULES = [
     tasks,
     custom_fields,
     audit_logs,
-    clients
+    clients,
+    local_scripts,
+    script_library
 ]
 
 

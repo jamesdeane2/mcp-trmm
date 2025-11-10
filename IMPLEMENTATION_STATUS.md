@@ -53,6 +53,27 @@
 ### Client Management (clients.py)
 - [x] List all clients
 
+### Script Library Management (script_library.py)
+- [x] List all scripts in TRMM Script Library
+- [x] Get specific script details by ID
+- [x] Upload script directly to TRMM Library
+- [x] Upload local script from scripts/ directory to TRMM Library
+- [x] Auto-detect shell type from file extension
+- [x] Integration with local scripts module
+
+### Local Script Management (local_scripts.py)
+- [x] List local scripts with filtering by type
+- [x] Read script content from disk
+- [x] Deploy scripts to one or multiple agents
+- [x] Deploy scripts to entire site (all agents in site)
+- [x] Deploy scripts to entire client (all agents for client)
+- [x] Save new scripts to local directory
+- [x] Delete scripts from local directory
+- [x] Auto-detect shell type from file extension
+- [x] Organized directory structure (powershell/python/bash/cmd)
+- [x] Security: Path validation to prevent directory traversal
+- [x] Smart targeting: Automatically resolves site/client names to agent IDs
+
 ### Documentation
 - [x] Comprehensive README with installation instructions
 - [x] Usage examples

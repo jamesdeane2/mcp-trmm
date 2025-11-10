@@ -1,6 +1,7 @@
 # Environment variables
 .env
 uv.lock
+ToDo.md
 
 # Python
 __pycache__/
@@ -29,6 +30,18 @@ wheels/
 
 # Logs
 *.log
+
+# Local scripts (but keep directory structure and samples)
+scripts/**
+!scripts/README.md
+!scripts/powershell/
+!scripts/python/
+!scripts/bash/
+!scripts/cmd/
+!scripts/powershell/sample_*.ps1
+!scripts/python/sample_*.py
+!scripts/bash/sample_*.sh
+!scripts/cmd/sample_*.cmd
 
 # IDE
 .vscode/
