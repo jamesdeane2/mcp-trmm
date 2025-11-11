@@ -10,7 +10,7 @@ def get_tools():
     return [
         {
             "name": "trmm_run_script",
-            "description": "Run a script on a specific agent. The script must exist in the Script Library.",
+            "description": "Run a script on a specific agent. The script must exist in the Script Library. WARNING: Use only ASCII characters in scripts - special/Unicode characters can cause execution failures.",
             "inputSchema": {
                 "type": "object",
                 "properties": {
@@ -61,7 +61,7 @@ def get_tools():
         },
         {
             "name": "trmm_run_command",
-            "description": "Run an ad-hoc command or script code on a specific agent (test/execute endpoint)",
+            "description": "Run an ad-hoc command or script code on a specific agent (test/execute endpoint). WARNING: Use only ASCII characters in scripts - special/Unicode characters can cause execution failures.",
             "inputSchema": {
                 "type": "object",
                 "properties": {

@@ -55,7 +55,7 @@ def get_tools():
         },
         {
             "name": "trmm_deploy_local_script",
-            "description": "Deploy a local script to agents. Can target specific agents, all agents in a site, or all agents for a client. Specify one of: agent_ids, site_name, or client_name",
+            "description": "Deploy a local script to agents. Can target specific agents, all agents in a site, or all agents for a client. Specify one of: agent_ids, site_name, or client_name. WARNING: Use only ASCII characters in scripts - special/Unicode characters can cause execution failures.",
             "inputSchema": {
                 "type": "object",
                 "properties": {
@@ -93,7 +93,7 @@ def get_tools():
         },
         {
             "name": "trmm_save_local_script",
-            "description": "Save or update a script in the local scripts directory. The script will be saved in the appropriate subdirectory based on the shell type",
+            "description": "Save or update a script in the local scripts directory. The script will be saved in the appropriate subdirectory based on the shell type. WARNING: Use only ASCII characters in scripts - special/Unicode characters can cause execution failures.",
             "inputSchema": {
                 "type": "object",
                 "properties": {

@@ -10,7 +10,7 @@ def get_tools():
     return [
         {
             "name": "trmm_list_agents",
-            "description": "List all agents in Tactical RMM. Can optionally include detailed information.",
+            "description": "List all agents in Tactical RMM. Can optionally include detailed information and filter by client, site, status, or monitoring type.",
             "inputSchema": {
                 "type": "object",
                 "properties": {
@@ -18,6 +18,24 @@ def get_tools():
                         "type": "boolean",
                         "description": "Include detailed agent information (default: false)",
                         "default": False
+                    },
+                    "client_name": {
+                        "type": "string",
+                        "description": "Filter by client name (optional)"
+                    },
+                    "site_name": {
+                        "type": "string",
+                        "description": "Filter by site name (optional)"
+                    },
+                    "status": {
+                        "type": "string",
+                        "description": "Filter by agent status (optional)",
+                        "enum": ["online", "offline"]
+                    },
+                    "monitoring_type": {
+                        "type": "string",
+                        "description": "Filter by monitoring type (optional)",
+                        "enum": ["workstation", "server"]
                     }
                 }
             }
@@ -93,7 +111,66 @@ async def handle_tool_call(name: str, arguments: Dict[str, Any]) -> List[Any]:
         detail = arguments.get("detail", False)
         params = {"detail": "true" if detail else "false"}
         result = client.get("/agents/", params=params)
-        return [{"type": "text", "text": str(result)}]
+        
+        # Apply filters if provided
+        filtered_result = result
+        
+        # Filter by client_name (case-insensitive)
+        if "client_name" in arguments and arguments["client_name"]:
+            client_name_filter = arguments["client_name"].lower()
+            filtered_result = [
+                agent for agent in filtered_result 
+                if agent.get("client_name", "").lower() == client_name_filter
+            ]
+        
+        # Filter by site_name (case-insensitive)
+        if "site_name" in arguments and arguments["site_name"]:
+            site_name_filter = arguments["site_name"].lower()
+            filtered_result = [
+                agent for agent in filtered_result 
+                if agent.get("site_name", "").lower() == site_name_filter
+            ]
+        
+        # Filter by status
+        if "status" in arguments and arguments["status"]:
+            status_filter = arguments["status"].lower()
+            filtered_result = [
+                agent for agent in filtered_result 
+                if agent.get("status", "").lower() == status_filter
+            ]
+        
+        # Filter by monitoring_type
+        if "monitoring_type" in arguments and arguments["monitoring_type"]:
+            monitoring_type_filter = arguments["monitoring_type"].lower()
+            filtered_result = [
+                agent for agent in filtered_result 
+                if agent.get("monitoring_type", "").lower() == monitoring_type_filter
+            ]
+        
+        # Reduce returned fields to essentials only
+        essential_fields = [
+            "agent_id", "hostname", "client_name", "site_name", 
+            "operating_system", "plat", "status", "monitoring_type",
+            "last_seen", "needs_reboot"
+        ]
+        
+        simplified_agents = []
+        for agent in filtered_result:
+            simplified = {k: agent.get(k) for k in essential_fields if k in agent}
+            simplified_agents.append(simplified)
+        
+        # Return summary with filter info
+        response = {
+            "total_agents": len(result),
+            "filtered_agents": len(filtered_result),
+            "filters_applied": {
+                k: v for k, v in arguments.items() 
+                if k in ["client_name", "site_name", "status", "monitoring_type"] and v
+            },
+            "agents": simplified_agents
+        }
+        
+        return [{"type": "text", "text": str(response)}]
     
     elif name == "trmm_get_agent":
         agent_id = arguments["agent_id"]

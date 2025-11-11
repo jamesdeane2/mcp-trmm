@@ -34,7 +34,7 @@ def get_tools():
         },
         {
             "name": "trmm_upload_script_to_library",
-            "description": "Upload a script to the Tactical RMM Script Library. Creates a new script entry.",
+            "description": "Upload a script to the Tactical RMM Script Library. Creates a new script entry. WARNING: Use only ASCII characters in scripts - special/Unicode characters can cause execution failures.",
             "inputSchema": {
                 "type": "object",
                 "properties": {
@@ -80,7 +80,7 @@ def get_tools():
         },
         {
             "name": "trmm_upload_local_script_to_library",
-            "description": "Upload a local script from the scripts directory to the TRMM Script Library",
+            "description": "Upload a local script from the scripts directory to the TRMM Script Library. WARNING: Use only ASCII characters in scripts - special/Unicode characters can cause execution failures.",
             "inputSchema": {
                 "type": "object",
                 "properties": {
