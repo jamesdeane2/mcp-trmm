@@ -45,7 +45,7 @@ A Model Context Protocol (MCP) server that provides comprehensive access to the 
 
 ## Installation
 
-1. Clone or download this repository to `/Users/admin/Documents/GitHub_James/mcp-trmm`
+1. Clone or download this repository to `/path/to/mcp-trmm`
 
 2. Install dependencies:
 ```bash
@@ -89,7 +89,7 @@ Add this to your Claude Desktop configuration file:
     "trmm": {
       "command": "python",
       "args": [
-        "/Users/admin/Documents/GitHub_James/mcp-trmm/server.py"
+        "/path/to/mcp-trmm/server.py"
       ]
     }
   }
