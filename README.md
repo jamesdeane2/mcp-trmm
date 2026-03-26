@@ -1,3 +1,7 @@
+![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue)
+![License: MIT](https://img.shields.io/badge/license-MIT-green)
+![MCP](https://img.shields.io/badge/MCP-compatible-purple)
+
 # Tactical RMM MCP Server
 
 A Model Context Protocol (MCP) server that provides comprehensive access to the Tactical RMM API, enabling AI assistants to manage and interact with your Tactical RMM deployment.
